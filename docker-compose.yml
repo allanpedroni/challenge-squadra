@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  weatherapi:
+    image: weatherapi
+    build:
+      context: .
+      dockerfile: ./src/Weather.API/Dockerfile
+    ports:
+      - "5072:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: weatherapi
+    depends_on:
+      - database
+
+  database:
+    build: ./src/data
+    environment:
+      SA_PASSWORD: "Testando@123"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
+    ports:
+        - "1433:1433"
+    container_name: database
+    hostname: database
+
+volumes:
+  mssqldata:
+
+networks:
+  semear:
+    name: squadra-network

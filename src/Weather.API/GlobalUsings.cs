@@ -1,0 +1,22 @@
+global using Asp.Versioning;
+global using Mapster;
+global using MapsterMapper;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Newtonsoft.Json;
+global using Serilog;
+global using Swashbuckle.AspNetCore.Annotations;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Reflection;
+global using System.Text.Json.Serialization;
+global using Weather.API.Adapters;
+global using Weather.API.Adapters.OpenWeatherAPI;
+global using Weather.API.Adapters.OpenWeatherAPI.Dtos;
+global using Weather.API.Adapters.SqlServer;
+global using Weather.API.Extensions;
+global using Weather.API.Models;
+global using Weather.API.Models.Adapters;
+global using Weather.API.Models.Configuration;
+global using Weather.API.Models.Entities;
+
