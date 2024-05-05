@@ -1,4 +1,6 @@
 
+using Weather.API.Dtos;
+
 namespace Weather.API;
 
 public static class WebApiMapping
@@ -7,7 +9,9 @@ public static class WebApiMapping
     {
         var config = TypeAdapterConfig.GlobalSettings;
 
-        config.NewConfig<WeatherForecastAuditEntity, WeatherForecastAudit>();
+        config.NewConfig<WeatherForecastAuditEntity, WeatherForecastAuditGetResponse>();
+
+        config.NewConfig<WeatherForecast, WeatherForecastGetResponse>();
 
         return config;
     }

@@ -1,6 +1,6 @@
 namespace Weather.API.Models;
 
-public class WeatherForecast
+public class WeatherForecastGetResponse
 {
     public string Date { get; set; }
 

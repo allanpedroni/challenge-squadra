@@ -1,5 +1,4 @@
 using Weather.API.Dtos;
-using Weather.API.Models.Adapters;
 using Weather.API.Models.Services;
 
 namespace Weather.API.Controllers;
@@ -8,64 +7,61 @@ namespace Weather.API.Controllers;
 ///     Controlador para a previsão do tempo.
 /// </summary>
 [ApiController]
+[ApiVersion("1.0")]
 [Route("api/[controller]")]
-//[Route("api/v{version:apiVersion}/[controller]")]
 public class ForecastController : ControllerBase
 {
     private readonly IWeatherForecastService _weatherForecastService;
+    private readonly IMapper _mapper;
 
-    public ForecastController(IWeatherForecastService weatherForecastService)
+    public ForecastController(IWeatherForecastService weatherForecastService,
+        IMapper mapper)
     {
-        this._weatherForecastService = weatherForecastService ?? 
+        _weatherForecastService = weatherForecastService ??
             throw new ArgumentNullException(nameof(weatherForecastService));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     [SwaggerOperation(
         Summary = "Gets the weather forecast for the next 5 days.",
-        Description = "Gets the weather forecast for the next 5 days for the city of São Paulo.",
+        Description = "Gets the weather forecast for the next 5 days for a given city.",
         OperationId = nameof(GetWeatherForecastFor5DaysAsync)
     )]
-    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(WeatherForecast))]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<WeatherForecastGetResponse>))]
     [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
     [SwaggerResponse(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
     [SwaggerResponse(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
     [SwaggerResponse(StatusCodes.Status429TooManyRequests, Type = typeof(ProblemDetails))]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [HttpGet]
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastFor5DaysAsync(
-        [FromQuery] WeatherForecastGet weatherForecastGet)
+    public async Task<IEnumerable<WeatherForecastGetResponse>> GetWeatherForecastFor5DaysAsync(
+        [FromQuery] WeatherForecastGet
+        weatherForecastGet)
     {
-        var weatherForecasts = 
+        var weatherForecasts =
             await _weatherForecastService.GetFor5DaysByCityNameAsync(weatherForecastGet.CityName);
 
-        //Transform the model to DTO response
-        //WeatherForecast TO WeatherForecastGetResponse USIGN Mapster
+        var forecasts = _mapper.Map<IEnumerable<WeatherForecastGetResponse>>(weatherForecasts);
 
-        return weatherForecasts;
+        return forecasts;
     }
 
-
-   // [SwaggerOperation(
-   //    Summary = "Obtém a previsão do tempo para os próximos 5 dias.",
-   //    Description = "Obtém a previsão do tempo para os próximos 5 dias para a cidade de São Paulo.",
-   //    OperationId = nameof(GetWeatherForecastFor5DaysAsync)
-   //)]
-   // [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(WeatherForecast))]
-   // [SwaggerResponse(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
-   // [SwaggerResponse(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
-   // [SwaggerResponse(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
-   // [SwaggerResponse(StatusCodes.Status429TooManyRequests, Type = typeof(ProblemDetails))]
-   // [SwaggerResponse(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [SwaggerOperation(
+        Summary = "Get the audit of weather forecast by city name.",
+        Description = "Get the audit of weather forecast for a given city.",
+        OperationId = nameof(GetWeatherForecastAuditByCityNameAsync)
+    )]
+    [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<WeatherForecastAuditGetResponse>))]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [HttpGet("audit")]
-    public async Task<IEnumerable<WeatherForecastAudit>> GetWeatherForecastAuditByCityNameAsync(
-       [FromQuery] WeatherForecastAuditGet weatherForecastGet)
+    public async Task<IEnumerable<WeatherForecastAuditGetResponse>> GetWeatherForecastAuditByCityNameAsync(
+        [FromQuery] WeatherForecastAuditGet weatherForecastGet)
     {
         var weatherForecasts =
             await _weatherForecastService.GetAuditByCityNameAsync(weatherForecastGet.CityName);
 
-        //Transform the model to DTO response
-        //WeatherForecast TO WeatherForecastGetResponse USIGN Mapster
+        var audits =_mapper.Map<IEnumerable<WeatherForecastAuditGetResponse>>(weatherForecasts);
 
-        return weatherForecasts;
+        return audits;
     }
 }

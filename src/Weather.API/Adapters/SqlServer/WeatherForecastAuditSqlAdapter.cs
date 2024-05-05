@@ -1,4 +1,4 @@
-﻿namespace Weather.API.Adapters.SqlServer;
+namespace Weather.API.Adapters.SqlServer;
 
 public class WeatherForecastAuditSqlAdapter : 
     IWeatherForecastAuditWriteSqlAdapter, IWeatherForecastAuditReadSqlAdapter
@@ -38,9 +38,18 @@ public class WeatherForecastAuditSqlAdapter :
 
     public async Task<IEnumerable<WeatherForecastAuditEntity>> GetAuditByCityNameAsync(string cityName)
     {
-        return await _weatherDbContext.WeatherForecastAuditEntities
-            .Where(w => w.CityName == cityName)
-            .OrderByDescending(w => w.CreatedAt)
-            .ToListAsync();
+        try
+        {
+            return await _weatherDbContext.WeatherForecastAuditEntities
+                .Where(w => w.CityName == cityName)
+                .OrderByDescending(w => w.CreatedAt)
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao obter o log de auditoria.");
+        }
+
+        return Enumerable.Empty<WeatherForecastAuditEntity>();
     }
 }

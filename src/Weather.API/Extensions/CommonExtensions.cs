@@ -1,4 +1,4 @@
-﻿namespace Weather.API.Extensions;
+namespace Weather.API.Extensions;
 
 public static class CommonExtensions
 {
@@ -16,6 +16,7 @@ public static class CommonExtensions
 
         builder.Services
             .AddSingleton(WebApiMapping.Default())
+            .AddSingleton(InfrastructureMapping.Default())
             .AddScoped<IMapper, ServiceMapper>();
 
         return builder;
