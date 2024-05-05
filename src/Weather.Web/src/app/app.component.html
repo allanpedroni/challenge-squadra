@@ -2,19 +2,17 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started.</em></p>
 
-<div class="flex items-center space-x-2">
+<div>
   <input type="text"
          placeholder="Enter City Name"
-         class="shadow appearance-none border rounded py-2 pb-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline capitalize"
          [(ngModel)]="city"/>
   <button mat-raised-button
-          class="ga-width-100-per"
           color="primary"
           [disabled]="!forecasts"
           (click)="getWeatherForecasts()">
-    Current Weather
+    Get Forecast
   </button>
 </div>
 

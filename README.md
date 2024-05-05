@@ -1,22 +1,38 @@
-# Squadra Challenge
+# Desafio Squadra
 
-## Summary
+## Dados
+
+- **Autor**: Allan Barros Pedroni
+- **Email**: <allan.barros@gmail.com>
+- **Linkedin**: <https://www.linkedin.com/in/allanpedroni/?locale=pt_BR>
+
+## Índice
 
 - [Descrição](#descrição)
 - [Requisitos](#requisitos)
 - [Tecnologias](#tecnologias)
-- [Run the project locally](#run-the-project-locally)
+- [Executar o projeto local](#executar-o-projeto-local)
 - [Run the tests](#run-the-tests)
 
 ## Descrição
 
 Este projeto é um desafio para a empresa Squadra. O projeto consiste em dois componentes, um backend (C#) e um frontend (angular).
 
-O backend é uma API REST que expõe dois endpoints:
-- Obter a previsão do tempo de 5 dias por cidade
-- Obter auditoria da previsão do tempo por cidade
+O backend, escrito usando C#, é uma API REST que expõe dois endpoints:
+
+![Endpoints swagger](docs/endpoints-swagger.png)
+
+Como requisito, foi solicitado a utilização da API do [OpenWeatherMap](https://openweathermap.org/forecast5) para obter os dados da previsão do tempo.
+
+Toda requisição de obtenção da previsão do tempo será auditada, onde caso aconteça qualquer erro será gravado no banco qual motivo da falha.
 
 O frontend é uma aplicação web que expõe apenas uma página que permite ao usuário pesquisar a previsão do tempo informando o nome de uma cidade. Serão exibidos os dados da previsão do tempo para os próximos 5 dias.
+
+![Pagina weather forecast](docs/pagina-weather-forecast.png)
+
+A execução do projeto é feita através do docker-compose, onde é criado um containerers para o backend e outro para o frontend e para o banco de dados sqlserver.
+
+![Docker compose status](docs/docker-compose-status.png)
 
 ## Requisitos Técnicos
 
@@ -30,70 +46,61 @@ O frontend é uma aplicação web que expõe apenas uma página que permite ao u
 
 ## Tecnologias
 
-* Visual studio Version 17.9.6
-* Visual studio Code 1.89.0
-* [.NET 8 SDK](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
-* [Entity Framework Core 8](https://docs.microsoft.com/en-us/ef/core/)
-* [Angular 17.3.6](https://angular.io/)
-* [NodeJS v20.12.2](https://angular.io/)
-* [Mapster](https://github.com/MapsterMapper/Mapster)
-* [XUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq)
-* Swagger
-* [Docker](https://www.docker.com/), Docker Compose
+- Visual studio Version 17.9.6
+- Visual studio Code 1.89.0
+- [.NET 8 SDK](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
+- [Entity Framework Core 8](https://docs.microsoft.com/en-us/ef/core/)
+- [Angular 17.3.6](https://angular.io/)
+- [NodeJS v20.12.2](https://angular.io/)
+- [Mapster](https://github.com/MapsterMapper/Mapster)
+- [XUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq)
+- Swagger
+- [Docker](https://www.docker.com/), Docker Compose
 
-### Run The Project Locally
+## Executar o projeto local
 
-1. Clone the project:
-
-```bash
-$ git clone https://github.com/stefanini-applications/basic-api-csharp-template.git
-```
-2. Access the project directory:
+1. Clone o projeto para sua máquina local:
 
 ```bash
-$ cd basic-api-csharp-template
+git clone https://github.com/allanpedroni/challenge-squadra.git
 ```
 
-3. Adjust the environment variables to the `appsettings.json` file (for example)
+2. Acesse o diretório raiz onde o arquivo `docker-compose.yml` está localizado
 
-```json
-{
-  "Serilog": {
-    "MinimumLevel": {
-      "Default": "Information",
-      "Override": {
-        "Basic": "Debug",
-        "Microsoft.AspNetCore": "Warning",
-        "System": "Warning"
-      }
-    }
-  },
-  "AllowedHosts": "*",
-  "TmdbAdapterConfiguration": {
-    "TmdbApiUrlBase": "https://api.themoviedb.org/3",
-    "TmdbApiKey": "<API>",
-    "TimeCacheInSeconds": 30,
-    "Language": "pt-BR"
-  },
-  "HealthCheckPublisherOptions": {
-    "Delay": "00:00:05",
-    "Period": "00:00:50"
-  }
-}
-```
+![Repositório raiz](docs/repositorio-raiz.png)
 
-4. Run the project:
+3. Por fim, execute o comando `docker-compose up` (na raiz do repositório) para iniciar os dois projetos e um container do SQL Server. Assim que os containers forem iniciados:
 
-```bash
-$ dotnet run --project src/Basic.WebApi/Basic.WebApi.csproj
-```
+- O aplicativo `Frontend Angular` escuta em:
+  - Porta 4200 no IP do cartão de rede do Docker Host (PC)
+  - Porta 80 no IP interno do contêiner
+- O aplicativo `Backend API` escuta em:  
+  - Porta 5072 no IP do cartão de rede do Docker Host (PC)
+  - Porta 8080 no IP interno do contêiner
+- O serviço `sqlserver` de dados:
+  - Porta 1433 no IP do cartão de rede do Docker Host (PC)
+  - Porta 1433 no IP interno do contêiner
 
-5. You can access the API documentation through the link: [Swagger](http://localhost:5000/swagger-ui.html)
+4. Aguarde a execução do comando `docker-compose up` para finalizar a execução dos containers. Lembre-se que a primeira execução pode demorar um pouco mais, pois o docker irá baixar as imagens necessárias, além disso, o banco de dados precisa ser criado e populado via migration.
+
+>**Observação** Você será capaz de acessar os links conforme links abaixo.
+>
+> - [Weather.Web - Angular Web App](http://localhost:4200/)
+> - [Weather.API - Documentação Swagger](http://localhost:5072/swagger/index.html)
 
 ## Run the tests
 
-1. Run all unit tests:
+1. Para o projeto backend, execute todos testes unitários do projeto com o comando abaixo, na pasta diretório raiz:
 
 ```bash
-$ dotnet test
+dotnet test
 ```
+
+> **Observação** Caso queira visualizar a cobertura acesse o [link](tests\Weather.API.Services.Tests\Coveragereport\index.html).
+
+2. Para o projeto frontend, execute todos testes unitários do projeto com o comando abaixo, na pasta `src/Weather.Web`:
+
+```bash
+ng test
+```
+> **Observação** Caso queira visualizar a cobertura acesse o [link](src\Weather.Web\coverage\index.html).
