@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AngularProjectWeatherBoard", "AngularProjectWeatherBoard.esproj", "{868EB7C4-DD71-4755-A135-8904F9F12893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularProjectWeatherBoardAPI", "..\AngularProjectWeatherBoardAPI\AngularProjectWeatherBoardAPI.csproj", "{3103D632-1A0D-462B-A54A-9C1A4EBBACBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868EB7C4-DD71-4755-A135-8904F9F12893}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3103D632-1A0D-462B-A54A-9C1A4EBBACBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3103D632-1A0D-462B-A54A-9C1A4EBBACBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3103D632-1A0D-462B-A54A-9C1A4EBBACBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3103D632-1A0D-462B-A54A-9C1A4EBBACBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {552B1637-7882-4F8E-99A0-BCEDFC0C0E58}
+	EndGlobalSection
+EndGlobal

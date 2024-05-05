@@ -24,7 +24,7 @@ public class WeatherForecastService : IWeatherForecastService
     {
         if (string.IsNullOrEmpty(cityName))
         {
-            throw new ArgumentException($"'{nameof(cityName)}' cannot be null or empty.", nameof(cityName));
+            throw new ArgumentException($"'{nameof(cityName)}' cannot be null or empty.");
         }
 
         _logger.LogDebug("Obtendo a previsão do tempo para a cidade de {CityName}.", cityName);
@@ -42,7 +42,7 @@ public class WeatherForecastService : IWeatherForecastService
     {
         if (string.IsNullOrEmpty(cityName))
         {
-            throw new ArgumentException($"'{nameof(cityName)}' cannot be null or empty.", nameof(cityName));
+            throw new ArgumentException($"'{nameof(cityName)}' cannot be null or empty.");
         }
 
         return

@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.API", "src\Weather.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Weather.Web", "..\pocs\AngularProjectWeatherBoard\Weather.Web.esproj", "{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Weather.Web", "src\Weather.Web\Weather.Web.esproj", "{D2991A42-B151-42A8-B397-3828C77B3266}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BC2DDC6-B15F-4523-B30A-ED2B22D7319E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.API.Services.Tests", "tests\Weather.API.Services.Tests\Weather.API.Services.Tests.csproj", "{A4B4A3B5-07B6-428A-BB87-98BCF702656A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,15 +27,22 @@ Global
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2991A42-B151-42A8-B397-3828C77B3266}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A4B4A3B5-07B6-428A-BB87-98BCF702656A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B4A3B5-07B6-428A-BB87-98BCF702656A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B4A3B5-07B6-428A-BB87-98BCF702656A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B4A3B5-07B6-428A-BB87-98BCF702656A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A4B4A3B5-07B6-428A-BB87-98BCF702656A} = {3BC2DDC6-B15F-4523-B30A-ED2B22D7319E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5F91768-F5CF-4961-8021-C9C42AC7DC4C}
