@@ -113,6 +113,7 @@ ng test
 - Devido a baixa complexidade do projeto, o backend foi criado com apenas um projeto, porém, em um cenário real, seria interessante a separação das responsabilidade de forma mais granular, como por exemplo, um projeto para a camada de domínio, outro para a camada de aplicação e outro para a camada de infraestrutura, ou seja, uma arquitetura mais limpa e escalável, alinhada ao DDD e um arquitetura hexagonal ou clean.
 - Implementação de um pipeline de CI/CD para automatizar o deploy da aplicação.
 - Implementação dos testes automatizados de integração rodando sobe novas versões disponibilizadas em ambientes de homologação e produção.
+- Implementação de um design mais responsivo para o frontend.
 
 ## Anexos
 
