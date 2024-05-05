@@ -8,7 +8,7 @@ import { WeatherForecastService } from './services/weather-forecast.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public city: string = '';
+  public city: string = '' || 'Belo Horizonte';
   public forecasts: WeatherForecastData[] = [];
 
   //constructor(private http: HttpClient) { }
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   getWeatherForecasts() {
     console.log(`searching for ${this.city}`);
 
-    this.weatherForecastService.getWeatherForecast(this.city || 'Belo Horizonte')
+    this.weatherForecastService.getWeatherForecast(this.city)
       .then(response => {
         this.forecasts = response;
         console.info(`Success getting weather forecast for ${this.city}.`);

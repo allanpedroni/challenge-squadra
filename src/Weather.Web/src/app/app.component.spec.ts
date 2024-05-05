@@ -1,45 +1,74 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './AppComponent';
+import { WeatherForecastService } from './services/weather-forecast.service';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let httpMock: HttpTestingController;
+  let weatherForecastService: WeatherForecastService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [HttpClientTestingModule]
+      providers: [WeatherForecastService]
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
+    weatherForecastService = TestBed.inject(WeatherForecastService);
   });
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should retrieve weather forecasts from the server', () => {
-    const mockForecasts = [
-      { date: '2021-10-01', temperatureC: 20, temperatureF: 68, temperatureMin: 1, temperatureMax: 2, summary: 'Mild' },
-      { date: '2021-10-02', temperatureC: 25, temperatureF: 77, temperatureMin: 1, temperatureMax: 2, summary: 'Warm' }
-    ];
+  it('should initialize with empty city and forecasts', () => {
+    expect(component.city).toEqual('Belo Horizonte');
+    expect(component.forecasts).toEqual([]);
+  });
 
+  it('should call getWeatherForecasts on ngOnInit', () => {
+    spyOn(component, 'getWeatherForecasts');
     component.ngOnInit();
+    expect(component.getWeatherForecasts).toHaveBeenCalled();
+  });
 
-    const req = httpMock.expectOne('/weatherforecast');
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockForecasts);
+  it('should call weatherForecastService.getWeatherForecast with default city if city is empty', () => {
+    spyOn(weatherForecastService, 'getWeatherForecast').and.returnValue(Promise.resolve([]));
+    component.getWeatherForecasts();
+    expect(weatherForecastService.getWeatherForecast).toHaveBeenCalledWith('Belo Horizonte');
+  });
 
-    expect(component.forecasts).toEqual(mockForecasts);
+  it('should call weatherForecastService.getWeatherForecast with provided city if city is not empty', () => {
+    component.city = 'New York';
+    spyOn(weatherForecastService, 'getWeatherForecast').and.returnValue(Promise.resolve([]));
+    component.getWeatherForecasts();
+    expect(weatherForecastService.getWeatherForecast).toHaveBeenCalledWith('New York');
+  });
+
+  it('should set the forecasts with the response from weatherForecastService', async () => {
+    const mockResponse = [{ date: '2022-01-01', temperatureC: 20, temperatureF: 68, temperatureMin: 1, temperatureMax: 2, summary: 'Sunny' }];
+    spyOn(weatherForecastService, 'getWeatherForecast').and.returnValue(Promise.resolve(mockResponse));
+    await component.getWeatherForecasts();
+    expect(component.forecasts).toEqual(mockResponse);
+  });
+
+  it('should log success message when weatherForecastService.getWeatherForecast is successful', async () => {
+    spyOn(console, 'info');
+    spyOn(weatherForecastService, 'getWeatherForecast').and.returnValue(Promise.resolve([]));
+    await component.getWeatherForecasts();
+    expect(console.info).toHaveBeenCalledWith('Success getting weather forecast for Belo Horizonte.');
+  });
+
+  it('should log error message when weatherForecastService.getWeatherForecast fails', async () => {
+    spyOn(console, 'debug');
+    spyOn(console, 'error');
+    spyOn(weatherForecastService, 'getWeatherForecast').and.returnValue(Promise.reject('Error'));
+    component.city = '';
+    await component.getWeatherForecasts();
+    expect(console.debug);
+    expect(console.error);
   });
 });
