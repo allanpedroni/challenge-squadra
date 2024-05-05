@@ -96,11 +96,12 @@ git clone https://github.com/allanpedroni/challenge-squadra.git
 dotnet test
 ```
 
-> **Observação** Caso queira visualizar a cobertura acesse o [link](tests\Weather.API.Services.Tests\Coveragereport\index.html).
+> **Observação** Caso queira visualizar a cobertura acesse o [link](tests/Weather.API.Services.Tests/Coveragereport/index.html).
 
 2. Para o projeto frontend, execute todos testes unitários do projeto com o comando abaixo, na pasta `src/Weather.Web`:
 
 ```bash
 ng test
 ```
-> **Observação** Caso queira visualizar a cobertura acesse o [link](src\Weather.Web\coverage\index.html).
+> **Observação** Caso queira visualizar a cobertura acesse o [link](src/Weather.Web/coverage/index.html).
+
