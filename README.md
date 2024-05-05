@@ -73,24 +73,28 @@ git clone https://github.com/allanpedroni/challenge-squadra.git
 
 ![Repositório raiz](docs/repositorio-raiz.png)
 
-3. Por fim, execute o comando `docker-compose up` (na raiz do repositório) para iniciar os dois projetos e um container do SQL Server. Assim que os containers forem iniciados:
-
-- O aplicativo `Frontend Angular` escuta em:
-  - Porta 4200 no IP do cartão de rede do Docker Host (PC)
-  - Porta 80 no IP interno do contêiner
-- O aplicativo `Backend API` escuta em:  
-  - Porta 5072 no IP do cartão de rede do Docker Host (PC)
-  - Porta 8080 no IP interno do contêiner
-- O serviço `sqlserver` de dados:
-  - Porta 1433 no IP do cartão de rede do Docker Host (PC)
-  - Porta 1433 no IP interno do contêiner
+3. Por fim, execute o comando `docker-compose up` (na raiz do repositório) para iniciar os dois projetos e um container do SQL Server. 
 
 4. Aguarde a execução do comando `docker-compose up` para finalizar a execução dos containers. Lembre-se que a primeira execução pode demorar um pouco mais, pois o docker irá baixar as imagens necessárias, além disso, o banco de dados precisa ser criado e populado via migration (automático).
 
->**Observação** Você será capaz de acessar as aplicações com os links abaixo.
+
+
+>**Observação** 
 >
-> - [Weather.Web - Angular Web App](http://localhost:4200/)
-> - [Weather.API - Documentação Swagger](http://localhost:5072/swagger/index.html)
+> Assim que os containers forem iniciados:
+>
+>- O aplicativo `Frontend Angular` escuta em:
+>   - Link [Weather.Web - Angular Web App](http://localhost:4200/)
+>   - Porta 4200 no IP do cartão de rede do Docker Host (PC)
+>   - Porta 80 no IP interno do contêiner
+>- O aplicativo `Backend API` escuta em:  
+>   - [Weather.API - Documentação Swagger](http://localhost:5072/swagger/index.html)
+>   - Porta 5072 no IP do cartão de rede do Docker Host (PC)
+>   - Porta 8080 no IP interno do contêiner
+>- O serviço `sqlserver` de dados:
+>   - Porta 1433 no IP do cartão de rede do Docker Host (PC)
+>   - Porta 1433 no IP interno do contêiner
+
 
 ## Executar os testes
 
@@ -108,10 +112,15 @@ ng test
 
 ## O que pode ser evoluido
 
-- Implementação de testes de integração para o frontend e backend.
-- Inclusão e exposição de métricas de consumação da API externa, visto que está atrelado a um custo (exceto na versão free).
+Aqui descrevo algumas melhorias que poderiam ser implementadas para evoluir o projeto:
+
+- Criação do desenho da arquitetura do projeto, com diagramas de classe, sequência, componentes, etc.
+- Implementação de testes de aceitação para o frontend e backend.
+- Implementação de mais teste unitários para o backend e frontend permitindo uma cobertura de código maior.
+- Inclusão de métricas de consumação da API externa, visto que está atrelado a um custo (exceto na versão free).
 - Implementação de um cache para as requisições da API externa, visto que a mesma possui um limite de requisições por minuto.
-- Devido a baixa complexidade do projeto, o backend foi criado com apenas um projeto, porém, em um cenário real, seria interessante a separação das responsabilidade de forma mais granular, como por exemplo, um projeto para a camada de domínio, outro para a camada de aplicação e outro para a camada de infraestrutura, ou seja, uma arquitetura mais limpa e escalável, alinhada ao DDD e um arquitetura hexagonal ou clean.
+- Implementação de um mecanismo de re-tentativa para as requisições da API externa, visto que a mesma pode retornar erro por diversos motivos.
+- Devido a baixa complexidade do projeto, o backend e frontend foram criados com apenas um projeto, porém, em um cenário real, seria interessante a separação das responsabilidade de forma mais granular, como por exemplo, um projeto para a camada de domínio, outro para a camada de aplicação e outro para a camada de infraestrutura, ou seja, uma arquitetura mais limpa e escalável, alinhada ao DDD e um arquitetura hexagonal ou clean.
 - Implementação de um pipeline de CI/CD para automatizar o deploy da aplicação.
 - Implementação dos testes automatizados de integração rodando sobe novas versões disponibilizadas em ambientes de homologação e produção.
 - Implementação de um design mais responsivo para o frontend.
