@@ -24,8 +24,10 @@ public class OpenWeatherApiAdapter : IOpenWeatherAPIAdapter
 
         try
         {
+            //TODO: It can be improved!
+            //- We can configure AddHttpClient with the base address tagging the name weatherapi.
             var ub = new UriBuilder("https://api.openweathermap.org/data/2.5/forecast");
-            ub.Query = $"q={cityName}&appid={_openWeatherConfiguration.ApiKey}&lang={language}&&units=metric&cnt=5";
+            ub.Query = $"q={cityName}&appid={_openWeatherConfiguration.ApiKey}&lang={language}&&units=metric";
 
             var url = ub.Uri.ToString();
 
@@ -39,34 +41,41 @@ public class OpenWeatherApiAdapter : IOpenWeatherAPIAdapter
 
                 if (data is null)
                 {
-                    errorMessage = "Falha ao deserializar a resposta da API do OpenWeather.";
+                    errorMessage = "Failed to deserialize the response from the OpenWeather API.";
 
-                    _logger.LogWarning("Falha ao deserializar a resposta da API do OpenWeather.");
+                    _logger.LogWarning("Failed to deserialize the response from the OpenWeather API.");
                 }
                 else
                 {
-                    _logger.LogInformation("Previsão do tempo para {NomeCidade} obtida com sucesso.", cityName);
+                    _logger.LogInformation("Weather forecast for {CityName} obtained successfully.", cityName);
 
-                    weatherForecasts = _mapper.Map<IEnumerable<WeatherForecast>>(data.list);
+                    // Group by date to get only one forecast per day
+                    var forecasts = data.list
+                        .GroupBy(x => x.dt_txt.Date)
+                        .Select(x => x.First());
+
+                    weatherForecasts = _mapper.Map<IEnumerable<WeatherForecast>>(forecasts);
                 }
             }
             else
             {
                 var possibleResponseError = await TryExtractErrorMessageFromResponse(response);
 
-                _logger.LogWarning("Falha ao obter a previsão do tempo. Error: {ErrorMessage} com código de status: {StatusCode} ",
+                _logger.LogWarning("Failed to retrieve weather forecast. Error: {ErrorMessage} with status code: {StatusCode} ",
                     possibleResponseError, response.StatusCode);
 
-                errorMessage = $"Falha ao obter a previsão do tempo com código de status: {response.StatusCode} e mensagem de error: {possibleResponseError}.";
+                errorMessage = $"Failed to retrieve weather forecast with status code: {response.StatusCode} and error message: {possibleResponseError}.";
             }
         }
-        //TODO: according to the OpenWeather docs, here it is the known exceptions
-        //API calls return an error 400, 401, 404, 429, '5xx'
+        //TODO: It can be improved!
+        //- We should have a specific exception for the OpenWeather API
+        //- According to the OpenWeather docs, here it is the known exceptions
+        //- API calls return an error 400, 401, 404, 429, '5xx'
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Falha ao obter a previsão do tempo para {NomeCidade}.", cityName);
+            _logger.LogError(ex, "Failed to retrieve weather forecast for {CityName}.", cityName);
 
-            errorMessage = "Falha ao obter a previsão do tempo.";
+            errorMessage = "Failed to retrieve weather forecast.";
         }
 
         return (weatherForecasts, errorMessage);
@@ -82,7 +91,7 @@ public class OpenWeatherApiAdapter : IOpenWeatherAPIAdapter
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Falha ao extrair a mensagem de erro da resposta da API.");
+            _logger.LogError(ex, "Failed to extract the error message from the API response.");
         }
 
         return errorMessage;

@@ -1,4 +1,4 @@
-﻿namespace Weather.API.Models.Entities;
+namespace Weather.API.Models.Entities;
 
 [Table("WeatherForecastAudit")]
 public class WeatherForecastAuditEntity : BaseEntity
@@ -8,7 +8,7 @@ public class WeatherForecastAuditEntity : BaseEntity
     public string CityName { get; set; }
 
     [Required]
-    [Column(TypeName = "smalldatetime")]
+    [Column(TypeName = "datetime")]
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(1000)]

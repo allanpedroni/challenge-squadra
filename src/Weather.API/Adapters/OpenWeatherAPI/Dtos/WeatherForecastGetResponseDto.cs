@@ -32,7 +32,8 @@ public class List
     public int dt { get; set; }
     public Main main { get; set; }
     public Weather[] weather { get; set; }
-    public string dt_txt { get; set; }
+    [JsonPropertyName("dt_txt")]
+    public DateTime dt_txt { get; set; }
 }
 
 public class Main

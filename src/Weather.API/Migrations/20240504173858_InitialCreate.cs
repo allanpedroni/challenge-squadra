@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -16,7 +16,7 @@ namespace Weather.API.Migrations
                 columns: table => new
                 {
                     CityName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "smalldatetime", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

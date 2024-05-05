@@ -8,7 +8,7 @@ public static class InfrastructureMapping
         var config = TypeAdapterConfig.GlobalSettings;
 
         config.NewConfig<List, WeatherForecast>()
-            .Map(dest => dest.Date, src => src.dt_txt)
+            .Map(dest => dest.Date, src => src.dt_txt.Date)
             .Map(dest => dest.TemperatureMin, src => src.main.temp_min < 0 ? 0 : (int)src.main.temp_min)
             .Map(dest => dest.TemperatureMax, src => src.main.temp_max < 0 ? 0 : (int)src.main.temp_max)
             .Map(dest => dest.Summary, src => GetDescription(src))

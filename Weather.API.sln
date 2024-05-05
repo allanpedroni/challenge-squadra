@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.API", "src\Weather.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Weather.Web", "..\pocs\AngularProjectWeatherBoard\Weather.Web.esproj", "{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BEB8C11-D84D-42AC-AD16-C6829E0EFF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88700ADE-2D6B-4834-90B5-D7AD7B4E95A7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
