@@ -12,13 +12,13 @@
 - [Requisitos](#requisitos)
 - [Tecnologias](#tecnologias)
 - [Executar o projeto local](#executar-o-projeto-local)
-- [Executar os tests](#executar-os-tests)
-- [Arquivos](#arquivos)
-- [Evoluções futuras](#evoluções-futuras)
+- [Executar os testes](#executar-os-testes)
+- [O que pode ser evoluido](#o-que-pode-ser-evoluido)
+- [Anexos](#anexos)
 
 ## Descrição
 
-Este projeto é um desafio para a empresa Squadra. O projeto consiste em dois componentes, um backend (C#) e um frontend (angular).
+Este projeto é um desafio para a empresa Squadra, consiste em dois componentes, um backend (C#) e um frontend (angular).
 
 O backend, escrito usando C#, é uma API REST que expõe dois endpoints:
 
@@ -28,11 +28,11 @@ Como requisito, foi solicitado a utilização da API do [OpenWeatherMap](https:/
 
 Toda requisição de obtenção da previsão do tempo será auditada, onde caso aconteça qualquer erro será gravado no banco qual motivo da falha.
 
-O frontend é uma aplicação web que expõe apenas uma página que permite ao usuário pesquisar a previsão do tempo informando o nome de uma cidade. Serão exibidos os dados da previsão do tempo para os próximos 5 dias.
+O frontend é uma aplicação web que expõe apenas uma página que permite ao usuário pesquisar a previsão do tempo informando o nome de uma cidade. Serão exibidos os dados da previsão do tempo para os próximos 5 dias, contando com o dia atual.
 
 ![Pagina weather forecast](docs/pagina-weather-forecast.png)
 
-A execução do projeto é feita através do docker-compose, onde é criado um containerers para o backend e outro para o frontend e para o banco de dados sqlserver.
+A execução do projeto é feita através do docker-compose, onde são criados três containeres, backend, frontend e o banco de dados sqlserver.
 
 ![Docker compose status](docs/docker-compose-status.png)
 
@@ -84,14 +84,14 @@ git clone https://github.com/allanpedroni/challenge-squadra.git
   - Porta 1433 no IP do cartão de rede do Docker Host (PC)
   - Porta 1433 no IP interno do contêiner
 
-4. Aguarde a execução do comando `docker-compose up` para finalizar a execução dos containers. Lembre-se que a primeira execução pode demorar um pouco mais, pois o docker irá baixar as imagens necessárias, além disso, o banco de dados precisa ser criado e populado via migration.
+4. Aguarde a execução do comando `docker-compose up` para finalizar a execução dos containers. Lembre-se que a primeira execução pode demorar um pouco mais, pois o docker irá baixar as imagens necessárias, além disso, o banco de dados precisa ser criado e populado via migration (automático).
 
->**Observação** Você será capaz de acessar os links conforme links abaixo.
+>**Observação** Você será capaz de acessar as aplicações com os links abaixo.
 >
 > - [Weather.Web - Angular Web App](http://localhost:4200/)
 > - [Weather.API - Documentação Swagger](http://localhost:5072/swagger/index.html)
 
-## Executar os tests
+## Executar os testes
 
 1. Para o projeto backend, execute todos testes unitários do projeto com o comando abaixo, na pasta diretório raiz:
 
@@ -105,13 +105,7 @@ dotnet test
 ng test
 ```
 
-## Arquivos
-
-- Relatório testes frontend - [link](tests/Weather.API.Services.Tests/Coveragereport/index.html).
-- Relatório testes backend - [link](src/Weather.Web/coverage/index.html)
-- Postman Collection - [link](src/Weather.API/Weather%20API.postman_collection.json)
-
-## Possíveis evoluções
+## O que pode ser evoluido
 
 - Implementação de testes de integração para o frontend e backend.
 - Inclusão e exposição de métricas de consumação da API externa, visto que está atrelado a um custo (exceto na versão free).
@@ -119,3 +113,9 @@ ng test
 - Devido a baixa complexidade do projeto, o backend foi criado com apenas um projeto, porém, em um cenário real, seria interessante a separação das responsabilidade de forma mais granular, como por exemplo, um projeto para a camada de domínio, outro para a camada de aplicação e outro para a camada de infraestrutura, ou seja, uma arquitetura mais limpa e escalável, alinhada ao DDD e um arquitetura hexagonal ou clean.
 - Implementação de um pipeline de CI/CD para automatizar o deploy da aplicação.
 - Implementação dos testes automatizados de integração rodando sobe novas versões disponibilizadas em ambientes de homologação e produção.
+
+## Anexos
+
+- Relatório testes frontend - [link](tests/Weather.API.Services.Tests/Coveragereport/index.html).
+- Relatório testes backend - [link](src/Weather.Web/coverage/index.html)
+- Postman Collection - [link](src/Weather.API/Weather%20API.postman_collection.json)
