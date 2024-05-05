@@ -5,6 +5,7 @@
 - **Autor**: Allan Barros Pedroni
 - **Email**: <allan.barros@gmail.com>
 - **Linkedin**: <https://www.linkedin.com/in/allanpedroni/?locale=pt_BR>
+- **Githubs**: https://github.com/allanpedroni e https://github.com/abpedroni
 
 ## Índice
 
