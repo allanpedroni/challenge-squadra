@@ -12,7 +12,9 @@
 - [Requisitos](#requisitos)
 - [Tecnologias](#tecnologias)
 - [Executar o projeto local](#executar-o-projeto-local)
-- [Run the tests](#run-the-tests)
+- [Executar os tests](#executar-os-tests)
+- [Arquivos](#arquivos)
+- [Evoluções futuras](#evoluções-futuras)
 
 ## Descrição
 
@@ -55,6 +57,7 @@ A execução do projeto é feita através do docker-compose, onde é criado um c
 - [Mapster](https://github.com/MapsterMapper/Mapster)
 - [XUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq)
 - Swagger
+- Serilog
 - [Docker](https://www.docker.com/), Docker Compose
 
 ## Executar o projeto local
@@ -88,7 +91,7 @@ git clone https://github.com/allanpedroni/challenge-squadra.git
 > - [Weather.Web - Angular Web App](http://localhost:4200/)
 > - [Weather.API - Documentação Swagger](http://localhost:5072/swagger/index.html)
 
-## Run the tests
+## Executar os tests
 
 1. Para o projeto backend, execute todos testes unitários do projeto com o comando abaixo, na pasta diretório raiz:
 
@@ -96,12 +99,23 @@ git clone https://github.com/allanpedroni/challenge-squadra.git
 dotnet test
 ```
 
-> **Observação** Caso queira visualizar a cobertura acesse o [link](tests/Weather.API.Services.Tests/Coveragereport/index.html).
-
 2. Para o projeto frontend, execute todos testes unitários do projeto com o comando abaixo, na pasta `src/Weather.Web`:
 
 ```bash
 ng test
 ```
-> **Observação** Caso queira visualizar a cobertura acesse o [link](src/Weather.Web/coverage/index.html).
 
+## Arquivos
+
+- Relatório testes frontend - [link](tests/Weather.API.Services.Tests/Coveragereport/index.html).
+- Relatório testes backend - [link](src/Weather.Web/coverage/index.html)
+- Postman Collection - [link](src/Weather.API/Weather%20API.postman_collection.json)
+
+## Possíveis evoluções
+
+- Implementação de testes de integração para o frontend e backend.
+- Inclusão e exposição de métricas de consumação da API externa, visto que está atrelado a um custo (exceto na versão free).
+- Implementação de um cache para as requisições da API externa, visto que a mesma possui um limite de requisições por minuto.
+- Devido a baixa complexidade do projeto, o backend foi criado com apenas um projeto, porém, em um cenário real, seria interessante a separação das responsabilidade de forma mais granular, como por exemplo, um projeto para a camada de domínio, outro para a camada de aplicação e outro para a camada de infraestrutura, ou seja, uma arquitetura mais limpa e escalável, alinhada ao DDD e um arquitetura hexagonal ou clean.
+- Implementação de um pipeline de CI/CD para automatizar o deploy da aplicação.
+- Implementação dos testes automatizados de integração rodando sobe novas versões disponibilizadas em ambientes de homologação e produção.

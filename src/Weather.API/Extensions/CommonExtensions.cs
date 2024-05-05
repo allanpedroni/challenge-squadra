@@ -22,6 +22,8 @@ public static class CommonExtensions
             .AddSingleton(InfrastructureMapping.Default())
             .AddScoped<IMapper, ServiceMapper>();
 
+        builder.Services.AddLogging(lb => lb.AddSerilog(Log.Logger, true));
+
         return builder;
     }
 

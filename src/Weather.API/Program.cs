@@ -1,31 +1,60 @@
+using Serilog.Events;
+using Serilog.Exceptions;
+using Serilog.Formatting.Json;
 using Weather.API.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Warning()
+    .MinimumLevel.Override("Weather.API", LogEventLevel.Information)
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("System", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .Enrich.WithExceptionDetails()
+    .WriteTo.Async(a => a.Console(new JsonFormatter()))
+    .CreateBootstrapLogger();
 
-// Add services to the container.
-builder
-    .AddBaseServices()
-    .AddEntityFramework()
-    .AddSwagger();
+try
+{
+    Log.Information("Starting web host");
 
-builder.Services
-    .AddHttpClient()
-    .AddInfraestructureServices(builder.Configuration)
-    .AddServices();
+    var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+    // Add services to the container.
+    builder
+        .AddBaseServices()
+        .AddEntityFramework()
+        .AddSwagger();
 
-app.AddSwagger();
+    builder.Services
+        .AddHttpClient()
+        .AddInfraestructureServices(builder.Configuration)
+        .AddServices();
 
-app.UseCors(static builder =>
-    builder.AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowAnyOrigin());
+    var app = builder.Build();
 
-app.UseAuthorization();
+    app.AddSwagger();
 
-app.MapControllers();
+    app.UseCors(static builder =>
+        builder.AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowAnyOrigin());
 
-await app.AddMigrationsAsync(builder);
+    app.UseAuthorization();
 
-app.Run();
+    app.MapControllers();
+
+    await app.AddMigrationsAsync(builder);
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Host terminated unexpectedly");
+    return 1;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
+return 0;

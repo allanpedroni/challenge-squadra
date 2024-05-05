@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "1537b0fb-a7f6-42d0-8b50-694b1c863566",
+		"name": "Weather API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755262"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "forecast",
+					"item": [
+						{
+							"name": "audit",
+							"item": [
+								{
+									"name": "Get the audit of weather forecast by city name.",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast/audit?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast",
+												"audit"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										},
+										"description": "Get the audit of weather forecast for a given city."
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "text/plain"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/forecast/audit?CityName=<string>&api-version=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"forecast",
+														"audit"
+													],
+													"query": [
+														{
+															"key": "CityName",
+															"value": "<string>",
+															"description": "City name"
+														},
+														{
+															"key": "api-version",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"cityName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"cityName\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  }\n]"
+										},
+										{
+											"name": "Server Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "text/plain"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/forecast/audit?CityName=<string>&api-version=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"forecast",
+														"audit"
+													],
+													"query": [
+														{
+															"key": "CityName",
+															"value": "<string>",
+															"description": "City name"
+														},
+														{
+															"key": "api-version",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Gets the weather forecast for the next 5 days.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"forecast"
+									],
+									"query": [
+										{
+											"key": "CityName",
+											"value": "<string>",
+											"description": "City name"
+										},
+										{
+											"key": "api-version",
+											"value": "<string>"
+										}
+									]
+								},
+								"description": "Gets the weather forecast for the next 5 days for a given city."
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"date\": \"<string>\",\n    \"temperatureMin\": \"<integer>\",\n    \"temperatureMax\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"icon\": \"<string>\"\n  },\n  {\n    \"date\": \"<string>\",\n    \"temperatureMin\": \"<integer>\",\n    \"temperatureMax\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"icon\": \"<string>\"\n  }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								},
+								{
+									"name": "Too Many Requests",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/forecast?CityName=<string>&api-version=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"forecast"
+											],
+											"query": [
+												{
+													"key": "CityName",
+													"value": "<string>",
+													"description": "City name"
+												},
+												{
+													"key": "api-version",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}
