@@ -1,7 +1,9 @@
-﻿using Weather.API.Adapters.SqlServer;
+using System.Diagnostics.CodeAnalysis;
+using Weather.API.Adapters.SqlServer;
 
 namespace Weather.API.Adapters;
 
+[ExcludeFromCodeCoverage]
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfraestructureServices(this IServiceCollection services, IConfiguration configuration)

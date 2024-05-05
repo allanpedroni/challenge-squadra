@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Weather.API.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class CommonExtensions
 {
     public static WebApplicationBuilder AddBaseServices(this WebApplicationBuilder builder)

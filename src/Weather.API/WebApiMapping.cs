@@ -1,8 +1,10 @@
 
+using System.Diagnostics.CodeAnalysis;
 using Weather.API.Dtos;
 
 namespace Weather.API;
 
+[ExcludeFromCodeCoverage]
 public static class WebApiMapping
 {
     public static TypeAdapterConfig Default()

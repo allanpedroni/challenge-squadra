@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-//import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class WeatherForecastService {
   }
 
   getWeatherForecast(city: string): Promise<any> {
-    var url = `${this.weatherApiUrl}/forecast?CityName=${city}`;
+    let url = `${this.weatherApiUrl}/forecast?CityName=${city}`;
     console.log(url);
     return axios.get(url)
       .then(response => response.data)

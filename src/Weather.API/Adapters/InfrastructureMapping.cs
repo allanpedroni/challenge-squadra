@@ -1,6 +1,9 @@
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Weather.API;
 
+[ExcludeFromCodeCoverage]
 public static class InfrastructureMapping
 {
     public static TypeAdapterConfig Default()

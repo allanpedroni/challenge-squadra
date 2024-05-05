@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Weather.API.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class ConfigurationBinderExtension
 {
     public static T SafeGet<T>(this IConfiguration configuration)
