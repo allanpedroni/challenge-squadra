@@ -1,15 +1,14 @@
 <h1 id="tableLabel">Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>Fetching forecast from the Weather.API.</p>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started.</em></p>
+<p *ngIf="!forecasts"><em>Loading... Please refresh once the Weather.API has started.</em></p>
 
 <div>
   <input type="text"
          placeholder="Enter City Name"
          [(ngModel)]="city"/>
-  <button mat-raised-button
-          color="primary"
+  <button color="primary"
           [disabled]="!forecasts"
           (click)="getWeatherForecasts()">
     Get Forecast
@@ -21,7 +20,7 @@
     <tr>
       <th>Date</th>
       <th>Min. (C)</th>
-      <th>Max. (F)</th>
+      <th>Max. (C)</th>
       <th>Summary</th>
     </tr>
   </thead>
