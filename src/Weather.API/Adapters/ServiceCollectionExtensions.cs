@@ -18,18 +18,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(openWeatherConfiguration ?? throw new ArgumentNullException(nameof(OpenWeatherConfiguration)));
 
         //OpenWeatherAPI
-
         services.AddScoped<IOpenWeatherAPIAdapter, OpenWeatherApiAdapter>();
+        
+        //Sqlserver - Entityframework
         services.AddScoped<IWeatherForecastAuditWriteSqlAdapter, WeatherForecastAuditSqlAdapter>();
         services.AddScoped<IWeatherForecastAuditReadSqlAdapter, WeatherForecastAuditSqlAdapter>();
-
-        //// Sql server - Entityframework
-
-        //services
-        //    .AddDbContext<TranslationDbContext>(options =>
-        //    {
-        //        options.UseSqlServer(configuration.GetConnectionString("TranslationHubDb"));
-        //    });
 
         return services;
     }
